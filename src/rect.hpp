@@ -30,6 +30,58 @@ public:
 	{
 	}
 
+	void setX(T v)
+	{
+		x  = v;
+		xw = x + w;
+	}
+
+	void setY(T v)
+	{
+		y  = v;
+		xh = y + h;
+	}
+
+	void setW(T v)
+	{
+		w  = v;
+		xw = x + w;
+	}
+
+	void setH(T v)
+	{
+		h  = v;
+		xh = y + h;
+	}
+
+	void withX(T v)
+	{
+		Rect r = *this;
+		r.setX(v);
+		return r;
+	}
+
+	void withY(T v)
+	{
+		Rect r = *this;
+		r.setY(v);
+		return r;
+	}
+
+	void withW(T v)
+	{
+		Rect r = *this;
+		r.setW(v);
+		return r;
+	}
+
+	void withH(T v)
+	{
+		Rect r = *this;
+		r.setH(v);
+		return r;
+	}
+
 	/* getHeightAsLine
     Returns height as a new Line object. */
 
