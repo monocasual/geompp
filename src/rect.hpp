@@ -35,7 +35,7 @@ public:
 
 	Line<T> getHeightAsLine() const
 	{
-		return Line(0, y, yh);
+		return Line(x, y, yh);
 	}
 
 	/* reduced (1)
