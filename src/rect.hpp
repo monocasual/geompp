@@ -38,22 +38,30 @@ public:
 		return Line(0, y, yh);
 	}
 
-	/* reduced
+	/* reduced (1)
+    Returns a new Rect with width and height reduced by a certain amount. */
+
+	Rect<T> reduced(T amountX, T amountY) const
+	{
+		Rect r = *this;
+
+		r.x += amountX;
+		r.y += amountY;
+		r.w -= amountX * 2;
+		r.h -= amountY * 2;
+		xw = x + w;
+		yh = y + h;
+
+		return r;
+	}
+
+	/* reduced (2)
     Returns a new Rect with all four sides reduced by a certain amount around
     the center point. */
 
 	Rect<T> reduced(T amount) const
 	{
-		Rect r = *this;
-
-		r.x += amount;
-		r.y += amount;
-		r.w -= amount * 2;
-		r.h -= amount * 2;
-		xw = x + w;
-		yh = y + h;
-
-		return r;
+		return reduced(amount, amount);
 	}
 
 	T x, y, w, h, xw, yh;
