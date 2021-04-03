@@ -39,7 +39,7 @@ public:
 	void setY(T v)
 	{
 		y  = v;
-		xh = y + h;
+		yh = y + h;
 	}
 
 	void setW(T v)
@@ -51,7 +51,7 @@ public:
 	void setH(T v)
 	{
 		h  = v;
-		xh = y + h;
+		yh = y + h;
 	}
 
 	void withX(T v)
