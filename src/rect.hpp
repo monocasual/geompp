@@ -54,28 +54,28 @@ public:
 		yh = y + h;
 	}
 
-	Rect<T> withX(T v)
+	Rect<T> withX(T v) const
 	{
 		Rect r = *this;
 		r.setX(v);
 		return r;
 	}
 
-	Rect<T> withY(T v)
+	Rect<T> withY(T v) const
 	{
 		Rect r = *this;
 		r.setY(v);
 		return r;
 	}
 
-	Rect<T> withW(T v)
+	Rect<T> withW(T v) const
 	{
 		Rect r = *this;
 		r.setW(v);
 		return r;
 	}
 
-	Rect<T> withH(T v)
+	Rect<T> withH(T v) const
 	{
 		Rect r = *this;
 		r.setH(v);
