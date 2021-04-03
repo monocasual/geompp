@@ -33,7 +33,7 @@ public:
 	/* getHeightAsLine
     Returns height as a new Line object. */
 
-	Line getHeightAsLine() const
+	Line<T> getHeightAsLine() const
 	{
 		return Line(0, y, yh);
 	}
@@ -42,7 +42,7 @@ public:
     Returns a new Rect with all four sides reduced by a certain amount around
     the center point. */
 
-	Rect reduced(T amount) const
+	Rect<T> reduced(T amount) const
 	{
 		Rect r = *this;
 
