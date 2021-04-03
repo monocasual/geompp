@@ -1,7 +1,7 @@
 #ifndef GEOMPP_RECT_HH
 #define GEOMPP_RECT_HH
 
-#include "src/line.hpp"
+#include "line.hpp"
 
 namespace geompp
 {
