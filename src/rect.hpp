@@ -54,28 +54,28 @@ public:
 		yh = y + h;
 	}
 
-	void withX(T v)
+	Rect<T> withX(T v)
 	{
 		Rect r = *this;
 		r.setX(v);
 		return r;
 	}
 
-	void withY(T v)
+	Rect<T> withY(T v)
 	{
 		Rect r = *this;
 		r.setY(v);
 		return r;
 	}
 
-	void withW(T v)
+	Rect<T> withW(T v)
 	{
 		Rect r = *this;
 		r.setW(v);
 		return r;
 	}
 
-	void withH(T v)
+	Rect<T> withH(T v)
 	{
 		Rect r = *this;
 		r.setH(v);
