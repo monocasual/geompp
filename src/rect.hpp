@@ -54,6 +54,57 @@ public:
 		yh = y + h;
 	}
 
+	/* trim[..]
+    Removes 'amount' from the one of the edges. */
+
+	void trimLeft(T amount)
+	{
+		x += amount;
+		w -= amount;
+	}
+
+	void trimRight(T amount)
+	{
+		w -= amount;
+		xw = x + w;
+	}
+
+	void trimTop(T amount)
+	{
+		y += amount;
+		h -= amount;
+	}
+
+	void trimBottom(T amount)
+	{
+		h -= amount;
+		yh = y + h;
+	}
+
+	/* reduce (1)
+    Reduces width and height by a certain amount. */
+
+	void reduce(T amountX, T amountY)
+	{
+		x += amountX;
+		y += amountY;
+		w -= amountX * 2;
+		h -= amountY * 2;
+		xw = x + w;
+		yh = y + h;
+	}
+
+	/* reduce (2)
+    Reduces all four sides by a certain amount around the center point. */
+
+	void reduce(T amount)
+	{
+		reduce(amount, amount);
+	}
+
+	/* with[...]
+    Returns a copy of this Rect with a new position/size. */
+
 	Rect<T> withX(T v) const
 	{
 		Rect r = *this;
@@ -82,6 +133,38 @@ public:
 		return r;
 	}
 
+	/* withTrimmed[...]
+    Returns a copy of this Rect with 'amount' removed from the one of the 
+    edges. */
+
+	Rect<T> withTrimmedLeft(T v) const
+	{
+		Rect r = *this;
+		r.trimLeft(v);
+		return r;
+	}
+
+	Rect<T> withTrimmedRight(T v) const
+	{
+		Rect r = *this;
+		r.trimRight(v);
+		return r;
+	}
+
+	Rect<T> withTrimmedTop(T v) const
+	{
+		Rect r = *this;
+		r.trimTop(v);
+		return r;
+	}
+
+	Rect<T> withTrimmedBottom(T v) const
+	{
+		Rect r = *this;
+		r.trimBottom(v);
+		return r;
+	}
+
 	/* getHeightAsLine
     Returns height as a new Line object. */
 
@@ -91,25 +174,19 @@ public:
 	}
 
 	/* reduced (1)
-    Returns a new Rect with width and height reduced by a certain amount. */
+    Returns a copy of this Rect with width and height reduced by a certain 
+    amount. */
 
 	Rect<T> reduced(T amountX, T amountY) const
 	{
 		Rect r = *this;
-
-		r.x += amountX;
-		r.y += amountY;
-		r.w -= amountX * 2;
-		r.h -= amountY * 2;
-		r.xw = r.x + r.w;
-		r.yh = r.y + r.h;
-
+		r.reduce(amountX, amountY);
 		return r;
 	}
 
 	/* reduced (2)
-    Returns a new Rect with all four sides reduced by a certain amount around
-    the center point. */
+    Returns a copy of this Rect with all four sides reduced by a certain amount 
+    around the center point. */
 
 	Rect<T> reduced(T amount) const
 	{
