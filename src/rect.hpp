@@ -49,8 +49,8 @@ public:
 		r.y += amountY;
 		r.w -= amountX * 2;
 		r.h -= amountY * 2;
-		xw = x + w;
-		yh = y + h;
+		r.xw = r.x + r.w;
+		r.yh = r.y + r.h;
 
 		return r;
 	}
