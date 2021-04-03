@@ -34,17 +34,23 @@ public:
 	{
 	}
 
-	Line withShiftedX(T x) const
+	/* withShiftedX
+    Returns a new Line horizontally shifted by a certain amount. */
+
+	Line withShiftedX(T delta) const
 	{
 		Line l = *this;
-		l.shiftX(x);
+		l.shiftX(delta);
 		return l;
 	}
 
-	void shiftX(T x)
+	/* shiftX
+    Horizontally shifts the line of a certain amount. */
+
+	void shiftX(T delta)
 	{
-		x1 = x;
-		x2 = x;
+		x1 += delta;
+		x2 += delta;
 	}
 
 	T x1, y1, x2, y2;
