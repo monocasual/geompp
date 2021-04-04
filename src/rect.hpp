@@ -54,6 +54,21 @@ public:
 		yh = y + h;
 	}
 
+	/* shift[...]
+	Shifts the rectangle by a certain amount. */
+
+	void shiftX(T amount)
+	{
+		x += amount;
+		xw = x + w;
+	}
+
+	void shiftY(T amount)
+	{
+		y += amount;
+		yh = y + h;
+	}
+
 	/* trim[..]
     Removes 'amount' from the one of the edges. */
 
@@ -82,7 +97,7 @@ public:
 	}
 
 	/* reduce (1)
-    Reduces width and height by a certain amount. */
+    Reduces width and height by a certain amount around the center point. */
 
 	void reduce(T amountX, T amountY)
 	{
@@ -97,81 +112,35 @@ public:
 	/* reduce (2)
     Reduces all four sides by a certain amount around the center point. */
 
-	void reduce(T amount)
-	{
-		reduce(amount, amount);
-	}
+	void reduce(T amount) { reduce(amount, amount); }
 
 	/* with[...]
     Returns a copy of this Rect with a new position/size. */
 
-	Rect<T> withX(T v) const
-	{
-		Rect r = *this;
-		r.setX(v);
-		return r;
-	}
+	Rect<T> withX(T v) const { return {v, y, w, h}; }
+	Rect<T> withY(T v) const { return {x, v, w, h}; }
+	Rect<T> withW(T v) const { return {x, y, v, h}; }
+	Rect<T> withH(T v) const { return {x, y, w, v}; }
 
-	Rect<T> withY(T v) const
-	{
-		Rect r = *this;
-		r.setY(v);
-		return r;
-	}
+	/* withShifted[...]
+	Returns a copy of this Rect shifted by a certain amount. */
 
-	Rect<T> withW(T v) const
-	{
-		Rect r = *this;
-		r.setW(v);
-		return r;
-	}
-
-	Rect<T> withH(T v) const
-	{
-		Rect r = *this;
-		r.setH(v);
-		return r;
-	}
+	Rect<T> withShiftedX(T amount) const { return {x += amount, y, w, h}; }
+	Rect<T> withShiftedY(T amount) const { return {x, y += amount, w, h}; }
 
 	/* withTrimmed[...]
     Returns a copy of this Rect with 'amount' removed from the one of the 
     edges. */
 
-	Rect<T> withTrimmedLeft(T v) const
-	{
-		Rect r = *this;
-		r.trimLeft(v);
-		return r;
-	}
-
-	Rect<T> withTrimmedRight(T v) const
-	{
-		Rect r = *this;
-		r.trimRight(v);
-		return r;
-	}
-
-	Rect<T> withTrimmedTop(T v) const
-	{
-		Rect r = *this;
-		r.trimTop(v);
-		return r;
-	}
-
-	Rect<T> withTrimmedBottom(T v) const
-	{
-		Rect r = *this;
-		r.trimBottom(v);
-		return r;
-	}
+	Rect<T> withTrimmedLeft(T amount) const { return {x += amount, y, w -= amount, h}; }
+	Rect<T> withTrimmedRight(T amount) const { return {x, y, w -= amount, h}; }
+	Rect<T> withTrimmedTop(T amount) const { return {x, y += amount, w, h -= amount}; }
+	Rect<T> withTrimmedBottom(T amount) const { return {x, y, w, h -= amount}; }
 
 	/* getHeightAsLine
     Returns height as a new Line object. */
 
-	Line<T> getHeightAsLine() const
-	{
-		return Line(x, y, yh);
-	}
+	Line<T> getHeightAsLine() const { return Line(x, y, yh); }
 
 	/* reduced (1)
     Returns a copy of this Rect with width and height reduced by a certain 
@@ -194,8 +163,6 @@ public:
 	}
 
 	T x, y, w, h, xw, yh;
-
-private:
 };
 } // namespace geompp
 
