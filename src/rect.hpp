@@ -125,17 +125,17 @@ public:
 	/* withShifted[...]
 	Returns a copy of this Rect shifted by a certain amount. */
 
-	Rect<T> withShiftedX(T amount) const { return {x += amount, y, w, h}; }
-	Rect<T> withShiftedY(T amount) const { return {x, y += amount, w, h}; }
+	Rect<T> withShiftedX(T amount) const { return {x + amount, y, w, h}; }
+	Rect<T> withShiftedY(T amount) const { return {x, y + amount, w, h}; }
 
 	/* withTrimmed[...]
     Returns a copy of this Rect with 'amount' removed from the one of the 
     edges. */
 
-	Rect<T> withTrimmedLeft(T amount) const { return {x += amount, y, w -= amount, h}; }
-	Rect<T> withTrimmedRight(T amount) const { return {x, y, w -= amount, h}; }
-	Rect<T> withTrimmedTop(T amount) const { return {x, y += amount, w, h -= amount}; }
-	Rect<T> withTrimmedBottom(T amount) const { return {x, y, w, h -= amount}; }
+	Rect<T> withTrimmedLeft(T amount) const { return {x + amount, y, w - amount, h}; }
+	Rect<T> withTrimmedRight(T amount) const { return {x, y, w - amount, h}; }
+	Rect<T> withTrimmedTop(T amount) const { return {x, y + amount, w, h - amount}; }
+	Rect<T> withTrimmedBottom(T amount) const { return {x, y, w, h - amount}; }
 
 	/* getHeightAsLine
     Returns height as a new Line object. */
