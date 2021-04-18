@@ -69,6 +69,21 @@ public:
 		x2 += amount;
 	}
 
+	/* with[...]
+    Returns a copy of this Line with new coordintates. */
+
+	Line withX1(T v) const { return {v, y1, x2, y2}; }
+	Line withY1(T v) const { return {x1, v, x2, y2}; }
+	Line withX2(T v) const { return {x1, y1, v, y2}; }
+	Line withY2(T v) const { return {x1, y1, x2, v}; }
+
+	/* withTrimmed[...]
+	Returns a copy of this Line with 'amount' removed from the one of the end
+	points. */
+
+	Line withTrimmedStart(T amount) const { return {x1 - amount, y1 - amount, x2, y2}; }
+	Line withTrimmedEnd(T amount) const { return {x1, y1, x2 - amount, y2 - amount}; }
+
 	/* withShiftedX
     Returns a new Line horizontally shifted by a certain amount. */
 
