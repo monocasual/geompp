@@ -194,7 +194,7 @@ public:
 
 	bool contains(Point<T> p) const
 	{
-		return p.x >= x && p.y >= y && p.x < wx && p.y < yh;
+		return p.x >= x && p.y >= y && p.x < xw && p.y < yh;
 	}
 
 	T x, y, w, h, xw, yh;
