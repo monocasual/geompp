@@ -28,6 +28,7 @@
 #define GEOMPP_RECT_HH
 
 #include "line.hpp"
+#include "point.hpp"
 
 namespace geompp
 {
@@ -186,6 +187,14 @@ public:
 	Rect<T> reduced(T amount) const
 	{
 		return reduced(amount, amount);
+	}
+
+	/* contains
+	Returns true if Point p is inside this Rect. */
+
+	bool contains(Point<T> p) const
+	{
+		return p.x >= x && p.y >= y && p.x < wx && p.y < yh;
 	}
 
 	T x, y, w, h, xw, yh;
