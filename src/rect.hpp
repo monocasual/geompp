@@ -167,7 +167,7 @@ public:
 	/* getHeightAsLine
     Returns height as a new Line object. */
 
-	Line<T> getHeightAsLine() const { return Line(x, y, yh); }
+	Line<T> getHeightAsLine() const { return Line(x, y, yh - 1); }
 
 	/* reduced (1)
     Returns a copy of this Rect with width and height reduced by a certain 
