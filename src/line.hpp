@@ -50,16 +50,6 @@ public:
 	{
 	}
 
-	/* Line (3) - vertical. */
-
-	Line(T x, T y1, T y2)
-	: x1(x)
-	, y1(y1)
-	, x2(x)
-	, y2(y2)
-	{
-	}
-
 	/* shiftX
     Horizontally shifts the line of a certain amount. */
 
