@@ -29,6 +29,7 @@
 
 #include "line.hpp"
 #include "point.hpp"
+#include "range.hpp"
 
 namespace geompp
 {
@@ -79,6 +80,15 @@ public:
 	{
 		h  = v;
 		yh = y + h;
+	}
+
+	/* setPosition
+	Sets the top-left corner to Point 'p'. */
+
+	void setPosition(Point<T> p)
+	{
+		setX(p.x);
+		setY(p.y);
 	}
 
 	/* shift[...]
@@ -149,6 +159,11 @@ public:
 	Rect<T> withW(T v) const { return {x, y, v, h}; }
 	Rect<T> withH(T v) const { return {x, y, w, v}; }
 
+	/* withPosition
+	Returns a copy of this Rect with a new top-left corner given by Point 'p'. */
+
+	Rect<T> withPosition(Point<T> p) const { return {p.x, p.y, w, h}; }
+
 	/* withShifted[...]
 	Returns a copy of this Rect shifted by a certain amount. */
 
@@ -164,10 +179,11 @@ public:
 	Rect<T> withTrimmedTop(T amount) const { return {x, y + amount, w, h - amount}; }
 	Rect<T> withTrimmedBottom(T amount) const { return {x, y, w, h - amount}; }
 
-	/* getHeightAsLine
-    Returns height as a new Line object. */
+	/* get[Width|Height]AsLine
+    Returns width or height as a new Line object. */
 
-	Line<T> getHeightAsLine() const { return Line(x, y, yh - 1); }
+	Line<T> getWidthAsLine() const { return Line(x, y, xw - 1, y); }
+	Line<T> getHeightAsLine() const { return Line(x, y, x, yh - 1); }
 
 	/* reduced (1)
     Returns a copy of this Rect with width and height reduced by a certain 
