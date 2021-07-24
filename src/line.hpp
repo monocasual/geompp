@@ -66,6 +66,8 @@ public:
 	Line withY1(T v) const { return {x1, v, x2, y2}; }
 	Line withX2(T v) const { return {x1, y1, v, y2}; }
 	Line withY2(T v) const { return {x1, y1, x2, v}; }
+	Line withX(T v) const { return {v, y1, v, y2}; }
+	Line withY(T v) const { return {x1, v, x2, v}; }
 
 	/* withShiftedX
     Returns a new Line horizontally shifted by a certain amount. */
@@ -73,8 +75,6 @@ public:
 	Line withShiftedX(T amount) const { return {x1 + amount, y1, x2 + amount, y2}; }
 
 	T x1, y1, x2, y2;
-
-private:
 };
 } // namespace geompp
 
