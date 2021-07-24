@@ -205,12 +205,21 @@ public:
 		return reduced(amount, amount);
 	}
 
-	/* contains
+	/* contains (1)
 	Returns true if Point p is inside this Rect. */
 
 	bool contains(Point<T> p) const
 	{
 		return p.x >= x && p.y >= y && p.x < xw && p.y < yh;
+	}
+
+	/* contains (2)
+	Returns true if Line l is inside this Rect. */
+
+	bool contains(Line<T> l) const
+	{
+		return l.x1 >= x && l.x1 < xw && l.x2 >= x && l.x2 < xw &&
+		       l.y1 >= y && l.y1 < yh && l.y2 >= y && l.y2 < yh;
 	}
 
 	T x, y, w, h, xw, yh;
