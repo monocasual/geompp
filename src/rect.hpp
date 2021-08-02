@@ -185,6 +185,8 @@ public:
 	Line<T> getWidthAsLine() const { return Line(x, y, xw - 1, y); }
 	Line<T> getHeightAsLine() const { return Line(x, y, x, yh - 1); }
 
+	Point<T> getPosition() const { return Point(x, y); }
+
 	/* reduced (1)
     Returns a copy of this Rect with width and height reduced by a certain 
     amount. */
