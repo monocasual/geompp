@@ -46,7 +46,34 @@ public:
 	{
 	}
 
-	T x, y;
+	bool operator==(const Point<T>& o) const
+	{
+		return x == o.x && y == o.y;
+	}
+
+	bool operator!=(const Point<T>& o) const
+	{
+		return !(*this == o);
+	}
+
+	Point<T> operator+(const Point<T>& o) const
+	{
+		return {x + o.x, y + o.y};
+	}
+
+	Point<T> operator-(const Point<T>& o) const
+	{
+		return {x - o.x, y - o.y};
+	}
+
+	/* with[...]
+    Returns a copy of this Point with a new coordinate. */
+
+	Point<T> withX(T v) const { return {v, y}; }
+	Point<T> withY(T v) const { return {x, v}; }
+
+	T x;
+	T y;
 };
 } // namespace geompp
 
