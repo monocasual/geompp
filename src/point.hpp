@@ -35,12 +35,12 @@ template <typename T>
 class Point
 {
 public:
-	Point()
+	constexpr Point()
 	: Point(0, 0)
 	{
 	}
 
-	Point(T x, T y)
+	constexpr Point(T x, T y)
 	: x(x)
 	, y(y)
 	{

@@ -40,7 +40,7 @@ public:
 	/* Rect (1) 
     Invalid rectangle. */
 
-	Rect()
+	constexpr Rect()
 	: Rect(0, 0, 0, 0)
 	{
 	}
@@ -48,7 +48,7 @@ public:
 	/* Rect (2) 
     Normal rectangle. */
 
-	Rect(T x, T y, T w, T h)
+	constexpr Rect(T x, T y, T w, T h)
 	: x(x)
 	, y(y)
 	, w(w)

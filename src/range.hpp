@@ -35,12 +35,12 @@ template <typename T>
 class Range
 {
 public:
-	Range()
+	constexpr Range()
 	: Range(0, 0)
 	{
 	}
 
-	Range(T a, T b)
+	constexpr Range(T a, T b)
 	: a(a)
 	, b(b)
 	{

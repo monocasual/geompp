@@ -35,14 +35,14 @@ class Line
 public:
 	/* Line (1) - invalid. */
 
-	Line()
+	constexpr Line()
 	: Line(0, 0, 0, 0)
 	{
 	}
 
 	/* Line (2) - normal. */
 
-	Line(T x1, T y1, T x2, T y2)
+	constexpr Line(T x1, T y1, T x2, T y2)
 	: x1(x1)
 	, y1(y1)
 	, x2(x2)
