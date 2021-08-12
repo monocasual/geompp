@@ -151,6 +151,11 @@ public:
 
 	void reduce(T amount) { reduce(amount, amount); }
 
+	/* isValid
+	True if this Rect has size greater than zero. */
+
+	bool isValid() const { return w > 0 && h > 0; }
+
 	/* with[...]
     Returns a copy of this Rect with a new position/size. */
 
