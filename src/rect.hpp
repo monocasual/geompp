@@ -156,6 +156,12 @@ public:
 
 	bool isValid() const { return w > 0 && h > 0; }
 
+	/* expand (1), (2)
+	The opposite of reduce (1), (2). */
+
+	void expand(T amountX, T amountY) { reduce(-amountX, -amountY); }
+	void expand(T amount) { reduce(-amount); }
+
 	/* with[...]
     Returns a copy of this Rect with a new position/size. */
 
@@ -211,6 +217,12 @@ public:
 	{
 		return reduced(amount, amount);
 	}
+
+	/* expanded (1), (2)
+	The opposite of reduced (1), (2). */
+
+	Rect<T> expanded(T amountX, T amountY) const { return reduced(-amountX, -amountY); }
+	Rect<T> expanded(T amount) const { return reduced(-amount); }
 
 	/* contains (1)
 	Returns true if Point p is inside this Rect. */
