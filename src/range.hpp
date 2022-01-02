@@ -47,6 +47,15 @@ public:
 		assert(a < b);
 	}
 
+	Range<T> operator*(const T m) const { return {a * m, b * m}; }
+	Range<T> operator*=(const T m) const { return {a * m, b * m}; }
+	Range<T> operator/(const T m) const { return {a / m, b / m}; }
+	Range<T> operator/=(const T m) const { return {a / m, b / m}; }
+	Range<T> operator+(const T m) const { return {a + m, b + m}; }
+	Range<T> operator+=(const T m) const { return {a + m, b + m}; }
+	Range<T> operator-(const T m) const { return {a - m, b - m}; }
+	Range<T> operator-=(const T m) const { return {a - m, b - m}; }
+
 	T getLength() const { return b - a; }
 
 	bool contains(T t) const
