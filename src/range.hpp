@@ -35,8 +35,9 @@ template <typename T>
 class Range
 {
 public:
-	constexpr Range()
-	: Range(0, 0)
+	constexpr Range() // Invalid default range
+	: a(0)
+	, b(0)
 	{
 	}
 
@@ -57,6 +58,11 @@ public:
 	Range<T> operator-=(const T m) const { return {a - m, b - m}; }
 
 	T getLength() const { return b - a; }
+
+	bool isValid() const
+	{
+		return a < b;
+	}
 
 	bool contains(T t) const
 	{
