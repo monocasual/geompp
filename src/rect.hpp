@@ -27,6 +27,7 @@
 #ifndef GEOMPP_RECT_HH
 #define GEOMPP_RECT_HH
 
+#include "border.hpp"
 #include "line.hpp"
 #include "point.hpp"
 #include "range.hpp"
@@ -133,23 +134,18 @@ public:
 		yh = y + h;
 	}
 
-	/* reduce (1)
-    Reduces width and height by a certain amount around the center point. */
+	/* reduce
+    Reduces all four sides by a certain Border. */
 
-	void reduce(T amountX, T amountY)
+	void reduce(Border<T> b)
 	{
-		x += amountX;
-		y += amountY;
-		w -= amountX * 2;
-		h -= amountY * 2;
+		x += b.left;
+		y += b.top;
+		w -= b.left + b.right;
+		h -= b.top + b.bottom;
 		xw = x + w;
 		yh = y + h;
 	}
-
-	/* reduce (2)
-    Reduces all four sides by a certain amount around the center point. */
-
-	void reduce(T amount) { reduce(amount, amount); }
 
 	/* isValid
 	True if this Rect has size greater than zero. */
@@ -198,24 +194,14 @@ public:
 
 	Point<T> getPosition() const { return Point(x, y); }
 
-	/* reduced (1)
-    Returns a copy of this Rect with width and height reduced by a certain 
-    amount. */
+	/* reduced 
+    Returns a copy of this Rect with all four sides reduced by a certain Border. */
 
-	Rect<T> reduced(T amountX, T amountY) const
+	Rect<T> reduced(Border<T> b) const
 	{
 		Rect r = *this;
-		r.reduce(amountX, amountY);
+		r.reduce(b);
 		return r;
-	}
-
-	/* reduced (2)
-    Returns a copy of this Rect with all four sides reduced by a certain amount 
-    around the center point. */
-
-	Rect<T> reduced(T amount) const
-	{
-		return reduced(amount, amount);
 	}
 
 	/* expanded (1), (2)
