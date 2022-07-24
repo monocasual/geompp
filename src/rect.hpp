@@ -147,6 +147,19 @@ public:
 		yh = y + h;
 	}
 
+	/* Scale
+	Scales this Rect scaled by a certain amount. */
+
+	void scale(float factor)
+	{
+		x *= factor;
+		y *= factor;
+		w *= factor;
+		h *= factor;
+		xw = x + w;
+		yh = y + h;
+	}
+
 	/* isValid
 	True if this Rect has size greater than zero. */
 
@@ -170,6 +183,11 @@ public:
 	Returns a copy of this Rect with a new top-left corner given by Point 'p'. */
 
 	Rect<T> withPosition(Point<T> p) const { return {p.x, p.y, w, h}; }
+
+	/* withSize
+	Returns a copy of this Rect with a new tsize. */
+
+	Rect<T> withSize(T newW, T newH) const { return {x, y, newW, newH}; }
 
 	/* withShifted[...]
 	Returns a copy of this Rect shifted by a certain amount. */
@@ -201,6 +219,16 @@ public:
 	{
 		Rect r = *this;
 		r.reduce(b);
+		return r;
+	}
+
+	/* scaled
+	Returns a copy of this Rect scaled by a certain amount. */
+
+	Rect<T> scaled(float factor)
+	{
+		Rect r = *this;
+		r.scale(factor);
 		return r;
 	}
 
