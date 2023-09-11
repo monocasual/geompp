@@ -27,6 +27,8 @@
 #ifndef GEOMPP_LINE_HH
 #define GEOMPP_LINE_HH
 
+#include "point.hpp"
+
 namespace geompp
 {
 template <typename T>
@@ -50,6 +52,16 @@ public:
 	{
 	}
 
+	/* Line (3) - normal, defined by two Points. */
+
+	constexpr Line(Point<T> p1, Point<T> p2)
+	: x1(p1.x)
+	, y1(p1.y)
+	, x2(p2.x)
+	, y2(p2.y)
+	{
+	}
+
 	/* shiftX
     Horizontally shifts the line of a certain amount. */
 
@@ -69,10 +81,11 @@ public:
 	Line withX(T v) const { return {v, y1, v, y2}; }
 	Line withY(T v) const { return {x1, v, x2, v}; }
 
-	/* withShiftedX
-    Returns a new Line horizontally shifted by a certain amount. */
+	/* withShifted[X,Y]
+    Returns a new Line horizontally or vertically shifted by a certain amount. */
 
 	Line withShiftedX(T amount) const { return {x1 + amount, y1, x2 + amount, y2}; }
+	Line withShiftedY(T amount) const { return {x1, y1 + amount, x2, y2 + amount}; }
 
 	T x1, y1, x2, y2;
 };

@@ -59,6 +59,16 @@ public:
 	{
 	}
 
+	Point<T> getTopLeft() const { return {x, y}; }
+	Point<T> getTopRight() const { return {xw, y}; }
+	Point<T> getBottomLeft() const { return {x, yh}; }
+	Point<T> getBottomRight() const { return {xw, yh}; }
+
+	Line<T> getTopLine() const { return {getTopLeft(), getTopRight()}; }
+	Line<T> getBottomLine() const { return {getBottomLeft(), getBottomRight()}; }
+	Line<T> getLeftLine() const { return {getTopLeft(), getBottomLeft()}; }
+	Line<T> getRightLine() const { return {getTopRight(), getBottomRight()}; }
+
 	void setX(T v)
 	{
 		x  = v;
