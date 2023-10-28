@@ -285,6 +285,8 @@ public:
 		T nw = std::min(x + w, o.x + o.w) - nx;
 		T nh = std::min(y + h, o.y + o.h) - ny;
 
+		if (nw <= 0 || nh <= 0)
+			return {};
 		return {nx, ny, nw, nh};
 	}
 
