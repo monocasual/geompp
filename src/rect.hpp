@@ -31,6 +31,7 @@
 #include "line.hpp"
 #include "point.hpp"
 #include "range.hpp"
+#include <algorithm>
 
 namespace geompp
 {
@@ -263,6 +264,28 @@ public:
 	{
 		return l.x1 >= x && l.x1 < xw && l.x2 >= x && l.x2 < xw &&
 		       l.y1 >= y && l.y1 < yh && l.y2 >= y && l.y2 < yh;
+	}
+
+	/* contains (3)
+	Returns true if Rect o is inside this Rect. */
+
+	bool contains(const Rect<T>& o) const
+	{
+		return x <= o.x && y <= o.y && x + w >= o.x + o.w && y + h >= o.y + o.h;
+	}
+
+	/* getIntersection
+	Returns the intersection with another Rect o and this one. Might return
+	an invalid Rect if the two don't intersect. */
+
+	Rect<T> getIntersection(const Rect<T>& o) const
+	{
+		T nx = std::max(x, o.x);
+		T ny = std::max(y, o.y);
+		T nw = std::min(x + w, o.x + o.w) - nx;
+		T nh = std::min(y + h, o.y + o.h) - ny;
+
+		return {nx, ny, nw, nh};
 	}
 
 	T x, y, w, h, xw, yh;
