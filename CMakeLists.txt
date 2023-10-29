@@ -4,6 +4,7 @@ project(geompp LANGUAGES CXX)
 
 add_executable(tests tests/range.cpp)
 target_include_directories(tests PRIVATE ${CMAKE_SOURCE_DIR})
+target_compile_features(tests PRIVATE cxx_std_20)
 
 include(cmake/CPM.cmake)
 
