@@ -28,6 +28,7 @@
 #define GEOMPP_RANGE_HH
 
 #include <cassert>
+#include <utility>
 
 namespace geompp
 {
@@ -67,6 +68,40 @@ public:
 	bool contains(T t) const
 	{
 		return t >= a && t < b;
+	}
+
+	/* intersects
+	True if Range o intersects this one. */
+
+	bool intersects(Range<T> o) const
+	{
+		return o.a < b && a < o.b;
+	}
+
+	/* contains
+	True if Range o lies entirely inside this one. */
+
+	bool contains(Range<T> o) const
+	{
+		return a <= o.a && b >= o.b;
+	}
+
+	/* getDifference
+	Returns the difference of this Range with another one as two ranges. They
+	might be invalid in some cases. 
+	See: https://en.wikipedia.org/wiki/Symmetric_difference */
+
+	std::pair<Range<T>, Range<T>> getDifference(Range<T> o) const
+	{
+		if (!intersects(o))
+			return {};
+		//if (contains(o))
+		//	return {{a, o.a}, {o.b, b}};
+
+		Range<T> r1 = a == o.a ? Range<T>() : a < o.a ? Range(a, o.a) : Range(o.a, a);
+		Range<T> r2 = b == o.b ? Range<T>() : o.b < b ? Range(o.b, b) : Range(b, o.b);
+
+		return {r1, r2};
 	}
 
 	T a, b;
