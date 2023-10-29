@@ -215,6 +215,12 @@ public:
 	Rect<T> withTrimmedTop(T amount) const { return {x, y + amount, w, h - amount}; }
 	Rect<T> withTrimmedBottom(T amount) const { return {x, y, w, h - amount}; }
 
+	/* with[Horizontal|Vertical]Range
+	Returns a copy of this rect new position and size defined by Range 'r'. */
+
+	Rect<T> withHorizontalRange(Range<T> r) const { return {r.a, y, r.getLength(), h}; }
+	Rect<T> withVerticalRange(Range<T> r) const { return {x, r.a, w, r.getLength()}; }
+
 	/* get[Width|Height]AsLine
     Returns width or height as a new Line object. */
 
