@@ -221,6 +221,12 @@ public:
 	Line<T> getWidthAsLine() const { return Line(x, y, xw - 1, y); }
 	Line<T> getHeightAsLine() const { return Line(x, y, x, yh - 1); }
 
+	/* get[Width|Height]AsRange
+    Returns width or height as a new Range object. */
+
+	Range<T> getWidthAsRange() const { return x < xw ? Range(x, xw) : Range<T>(); }
+	Range<T> getHeightAsRange() const { return y < yh ? Range(y, yh) : Range<T>(); }
+
 	Point<T> getPosition() const { return Point(x, y); }
 
 	/* reduced 
