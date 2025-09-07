@@ -13,7 +13,7 @@
  * Public License as published by the Free Software Foundation, either
  * version 3 of the License, or (at your option) any later version.
  *
- * geompp - Basic geometrical utilities for C++ is distributed in the hope that 
+ * geompp - Basic geometrical utilities for C++ is distributed in the hope that
  * it will be useful, but WITHOUT ANY WARRANTY; without even the implied
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
@@ -39,16 +39,16 @@ template <typename T>
 class Rect
 {
 public:
-	/* Rect (1) 
-    Invalid rectangle. */
+	/* Rect (1)
+	Invalid rectangle. */
 
 	constexpr Rect()
 	: Rect(0, 0, 0, 0)
 	{
 	}
 
-	/* Rect (2) 
-    Normal rectangle. */
+	/* Rect (2)
+	Normal rectangle. */
 
 	constexpr Rect(T x, T y, T w, T h)
 	: x(x)
@@ -119,7 +119,7 @@ public:
 	}
 
 	/* trim[..]
-    Removes 'amount' from the one of the edges. */
+	Removes 'amount' from the one of the edges. */
 
 	void trimLeft(T amount)
 	{
@@ -146,7 +146,7 @@ public:
 	}
 
 	/* reduce
-    Reduces all four sides by a certain Border. */
+	Reduces all four sides by a certain Border. */
 
 	void reduce(Border<T> b)
 	{
@@ -183,7 +183,7 @@ public:
 	void expand(T amount) { reduce(-amount); }
 
 	/* with[...]
-    Returns a copy of this Rect with a new position/size. */
+	Returns a copy of this Rect with a new position/size. */
 
 	Rect<T> withX(T v) const { return {v, y, w, h}; }
 	Rect<T> withY(T v) const { return {x, v, w, h}; }
@@ -207,8 +207,8 @@ public:
 	Rect<T> withShiftedY(T amount) const { return {x, y + amount, w, h}; }
 
 	/* withTrimmed[...]
-    Returns a copy of this Rect with 'amount' removed from the one of the 
-    edges. */
+	Returns a copy of this Rect with 'amount' removed from the one of the
+	edges. */
 
 	Rect<T> withTrimmedLeft(T amount) const { return {x + amount, y, w - amount, h}; }
 	Rect<T> withTrimmedRight(T amount) const { return {x, y, w - amount, h}; }
@@ -222,21 +222,21 @@ public:
 	Rect<T> withVerticalRange(Range<T> r) const { return {x, r.a, w, r.getLength()}; }
 
 	/* get[Width|Height]AsLine
-    Returns width or height as a new Line object. */
+	Returns width or height as a new Line object. */
 
 	Line<T> getWidthAsLine() const { return Line(x, y, xw - 1, y); }
 	Line<T> getHeightAsLine() const { return Line(x, y, x, yh - 1); }
 
 	/* get[Width|Height]AsRange
-    Returns width or height as a new Range object. */
+	Returns width or height as a new Range object. */
 
 	Range<T> getWidthAsRange() const { return x < xw ? Range(x, xw) : Range<T>(); }
 	Range<T> getHeightAsRange() const { return y < yh ? Range(y, yh) : Range<T>(); }
 
 	Point<T> getPosition() const { return Point(x, y); }
 
-	/* reduced 
-    Returns a copy of this Rect with all four sides reduced by a certain Border. */
+	/* reduced
+	Returns a copy of this Rect with all four sides reduced by a certain Border. */
 
 	Rect<T> reduced(Border<T> b) const
 	{
