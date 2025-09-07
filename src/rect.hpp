@@ -235,6 +235,11 @@ public:
 
 	Point<T> getPosition() const { return Point(x, y); }
 
+	/* getCenter
+	Returns the center point of this Rect. */
+
+	Point<T> getCenter() const { return Point(xw / 2, yh / 2); }
+
 	/* reduced
 	Returns a copy of this Rect with all four sides reduced by a certain Border. */
 
