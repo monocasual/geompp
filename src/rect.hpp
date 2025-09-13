@@ -221,6 +221,11 @@ public:
 	Rect<T> withHorizontalRange(Range<T> r) const { return {r.a, y, r.getLength(), h}; }
 	Rect<T> withVerticalRange(Range<T> r) const { return {x, r.a, w, r.getLength()}; }
 
+	/* withVerticalCenter
+	Returns a copy of this rect with new center defined by the y component of point 'p'. */
+
+	Rect<T> withVerticalCenter(Point<T> p) const { return {x, p.y - (h / 2), w, h}; }
+
 	/* get[Width|Height]AsLine
 	Returns width or height as a new Line object. */
 
