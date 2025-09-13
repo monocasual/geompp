@@ -238,7 +238,7 @@ public:
 	/* getCenter
 	Returns the center point of this Rect. */
 
-	Point<T> getCenter() const { return Point(xw / 2, yh / 2); }
+	Point<T> getCenter() const { return Point(x + (w / 2), y + (h / 2)); }
 
 	/* reduced
 	Returns a copy of this Rect with all four sides reduced by a certain Border. */
