@@ -13,7 +13,7 @@
  * Public License as published by the Free Software Foundation, either
  * version 3 of the License, or (at your option) any later version.
  *
- * geompp - Basic geometrical utilities for C++ is distributed in the hope that 
+ * geompp - Basic geometrical utilities for C++ is distributed in the hope that
  * it will be useful, but WITHOUT ANY WARRANTY; without even the implied
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
@@ -114,18 +114,20 @@ public:
 
 	/* getDifference
 	Returns the difference of this Range with another one as two ranges. They
-	might be invalid in some cases. 
+	might be invalid in some cases.
 	See: https://en.wikipedia.org/wiki/Symmetric_difference */
 
 	std::pair<Range<T>, Range<T>> getDifference(Range<T> o) const
 	{
 		if (!intersects(o))
 			return {};
-		//if (contains(o))
+		// if (contains(o))
 		//	return {{a, o.a}, {o.b, b}};
 
-		Range<T> r1 = a == o.a ? Range<T>() : a < o.a ? Range(a, o.a) : Range(o.a, a);
-		Range<T> r2 = b == o.b ? Range<T>() : o.b < b ? Range(o.b, b) : Range(b, o.b);
+		Range<T> r1 = a == o.a ? Range<T>() : a < o.a ? Range(a, o.a)
+		                                              : Range(o.a, a);
+		Range<T> r2 = b == o.b ? Range<T>() : o.b < b ? Range(o.b, b)
+		                                              : Range(b, o.b);
 
 		return {r1, r2};
 	}
