@@ -100,4 +100,42 @@ TEST_CASE("Range")
 			REQUIRE(!right.isValid());
 		}
 	}
+
+	SECTION("Test operations (compound)")
+	{
+		auto rMult = r1;
+		rMult *= 2;
+		REQUIRE(rMult == Range{r1.a, r1.b * 2});
+
+		auto rDiv = r1;
+		rDiv /= 2;
+		REQUIRE(rDiv == Range{r1.a, r1.b / 2});
+
+		auto rPlus = r1;
+		rPlus += 2;
+		REQUIRE(rPlus == Range{r1.a + 2, r1.b + 2});
+
+		auto rMin = r1;
+		rMin -= 2;
+		REQUIRE(rMin == Range{r1.a - 2, r1.b - 2});
+	}
+
+	SECTION("Test operations")
+	{
+		const auto rCopy = r1;
+		REQUIRE(r1 == rCopy);
+		REQUIRE(r1 != rCopy + 1);
+
+		const auto rMult = r1 * 2;
+		REQUIRE(rMult == Range{r1.a, r1.b * 2});
+
+		const auto rDiv = r1 / 2;
+		REQUIRE(rDiv == Range{r1.a, r1.b / 2});
+
+		const auto rPlus = r1 + 2;
+		REQUIRE(rPlus == Range{r1.a + 2, r1.b + 2});
+
+		const auto rMin = r1 - 2;
+		REQUIRE(rMin == Range{r1.a - 2, r1.b - 2});
+	}
 }
