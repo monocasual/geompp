@@ -49,6 +49,8 @@ public:
 		assert(a < b);
 	}
 
+	bool operator==(const Range<T>& o) const { return a == o.a && b == o.b; }
+
 	Range<T> operator*(const T m) const { return {a * m, b * m}; }
 	Range<T> operator*=(const T m) const { return {a * m, b * m}; }
 	Range<T> operator/(const T m) const { return {a / m, b / m}; }
