@@ -52,19 +52,30 @@ public:
 	bool operator==(const Range<T>& o) const { return a == o.a && b == o.b; }
 	bool operator!=(const Range<T>& o) const { return !operator==(o); }
 
-	Range<T> operator*(const T m) const { return {a * m, b * m}; }
-	Range<T> operator*=(const T m)
+	/* operator * (and the mutating version below)
+	Allows for multiplying by another type other than T, e.g. double when T
+	is int witout an implicit cast of double to int. */
+
+	template <typename U>
+	Range<T> operator*(U m) const { return {static_cast<T>(a * m), static_cast<T>(b * m)}; }
+	template <typename U>
+	Range<T> operator*=(U m)
 	{
-		a *= m;
-		b *= m;
+		a = static_cast<T>(a * m);
+		b = static_cast<T>(b * m);
 		return *this;
 	}
 
-	Range<T> operator/(const T m) const { return {a / m, b / m}; }
-	Range<T> operator/=(const T m)
+	/* operator / (and the mutating version below)
+	See note above for the * operator. */
+
+	template <typename U>
+	Range<T> operator/(U m) const { return {static_cast<T>(a / m), static_cast<T>(b / m)}; }
+	template <typename U>
+	Range<T> operator/=(U m)
 	{
-		a /= m;
-		b /= m;
+		a = static_cast<T>(a / m);
+		b = static_cast<T>(b / m);
 		return *this;
 	}
 
