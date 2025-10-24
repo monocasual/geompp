@@ -52,13 +52,36 @@ public:
 	bool operator==(const Range<T>& o) const { return a == o.a && b == o.b; }
 
 	Range<T> operator*(const T m) const { return {a * m, b * m}; }
-	Range<T> operator*=(const T m) const { return {a * m, b * m}; }
+	Range<T> operator*=(const T m)
+	{
+		a *= m;
+		b *= m;
+		return *this;
+	}
+
 	Range<T> operator/(const T m) const { return {a / m, b / m}; }
-	Range<T> operator/=(const T m) const { return {a / m, b / m}; }
+	Range<T> operator/=(const T m)
+	{
+		a /= m;
+		b /= m;
+		return *this;
+	}
+
 	Range<T> operator+(const T m) const { return {a + m, b + m}; }
-	Range<T> operator+=(const T m) const { return {a + m, b + m}; }
+	Range<T> operator+=(const T m)
+	{
+		a += m;
+		b += m;
+		return *this;
+	}
+
 	Range<T> operator-(const T m) const { return {a - m, b - m}; }
-	Range<T> operator-=(const T m) const { return {a - m, b - m}; }
+	Range<T> operator-=(const T m)
+	{
+		a -= m;
+		b -= m;
+		return *this;
+	}
 
 	T getLength() const { return b - a; }
 
