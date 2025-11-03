@@ -166,8 +166,10 @@ public:
 
 	void move(T newA)
 	{
+		const T oldLength = getLength();
+
 		a = newA;
-		b = b + newA;
+		b = a + oldLength;
 	}
 
 private:
