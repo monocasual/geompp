@@ -95,6 +95,9 @@ public:
 		return *this;
 	}
 
+	T getA() const { return a; }
+	T getB() const { return b; }
+
 	T getLength() const { return b - a; }
 
 	bool isValid() const
@@ -143,6 +146,25 @@ public:
 		return {r1, r2};
 	}
 
+	void setA(T newA)
+	{
+		assert(newA < b);
+		a = newA;
+	}
+
+	void setB(T newB)
+	{
+		assert(newB > a);
+		b = newB;
+	}
+
+	void setLength(T length)
+	{
+		assert(length > 0);
+		b = a + length;
+	}
+
+private:
 	T a, b;
 };
 } // namespace geompp
