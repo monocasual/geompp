@@ -164,6 +164,12 @@ public:
 		b = a + length;
 	}
 
+	void move(T newA)
+	{
+		a = newA;
+		b = b + newA;
+	}
+
 private:
 	T a, b;
 };
