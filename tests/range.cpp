@@ -14,32 +14,49 @@ TEST_CASE("Range")
 
 	SECTION("Test length")
 	{
-		REQUIRE(r1.getLength() == r1.b - r1.a);
+		REQUIRE(r1.getLength() == r1.getB() - r1.getA());
+
+		Range r2{0, 10};
+		r2.setLength(r1.getLength() * 2);
+
+		REQUIRE(r2.getLength() == r2.getB() - r2.getA());
+	}
+
+	SECTION("Test move")
+	{
+		const int delta = 100;
+		Range     r2    = r1;
+
+		r2.move(delta);
+
+		REQUIRE(r2.getLength() == r1.getLength());
+		REQUIRE(r2.getA() == r1.getA() + delta);
+		REQUIRE(r2.getB() == r1.getB() + delta);
 	}
 
 	SECTION("Test contains point")
 	{
-		REQUIRE(r1.contains(r1.a + 1));
-		REQUIRE(!r1.contains(r1.b + 1));
+		REQUIRE(r1.contains(r1.getA() + 1));
+		REQUIRE(!r1.contains(r1.getB() + 1));
 	}
 
 	SECTION("Test intersection")
 	{
-		REQUIRE(r1.intersects({r1.a, r1.b - 1}));
-		REQUIRE(r1.intersects({r1.a, r1.b + 1}));
-		REQUIRE(r1.intersects({r1.a - 1, r1.b}));
-		REQUIRE(r1.intersects({r1.a + 1, r1.b}));
-		REQUIRE(r1.intersects({r1.a - 1, r1.b + 1}));
-		REQUIRE(r1.intersects({r1.a + 1, r1.b - 1}));
-		REQUIRE(!r1.intersects({r1.b, r1.b + 1}));
+		REQUIRE(r1.intersects({r1.getA(), r1.getB() - 1}));
+		REQUIRE(r1.intersects({r1.getA(), r1.getB() + 1}));
+		REQUIRE(r1.intersects({r1.getA() - 1, r1.getB()}));
+		REQUIRE(r1.intersects({r1.getA() + 1, r1.getB()}));
+		REQUIRE(r1.intersects({r1.getA() - 1, r1.getB() + 1}));
+		REQUIRE(r1.intersects({r1.getA() + 1, r1.getB() - 1}));
+		REQUIRE(!r1.intersects({r1.getB(), r1.getB() + 1}));
 	}
 
 	SECTION("Test contains Range")
 	{
-		REQUIRE(r1.contains({r1.a, r1.b}));
-		REQUIRE(r1.contains({r1.a + 1, r1.b - 1}));
-		REQUIRE(!r1.contains({r1.a - 1, r1.b}));
-		REQUIRE(!r1.contains({r1.a, r1.b + 1}));
+		REQUIRE(r1.contains({r1.getA(), r1.getB()}));
+		REQUIRE(r1.contains({r1.getA() + 1, r1.getB() - 1}));
+		REQUIRE(!r1.contains({r1.getA() - 1, r1.getB()}));
+		REQUIRE(!r1.contains({r1.getA(), r1.getB() + 1}));
 	}
 
 	SECTION("Test difference")
@@ -53,12 +70,12 @@ TEST_CASE("Range")
 
 			REQUIRE(left.isValid());
 			REQUIRE(right.isValid());
-			REQUIRE(left.a == r1.a);
-			REQUIRE(left.b == r2.a);
-			REQUIRE(left.getLength() == r2.a - r1.a);
-			REQUIRE(right.a == r2.b);
-			REQUIRE(right.b == r1.b);
-			REQUIRE(right.getLength() == r1.b - r2.b);
+			REQUIRE(left.getA() == r1.getA());
+			REQUIRE(left.getB() == r2.getA());
+			REQUIRE(left.getLength() == r2.getA() - r1.getA());
+			REQUIRE(right.getA() == r2.getB());
+			REQUIRE(right.getB() == r1.getB());
+			REQUIRE(right.getLength() == r1.getB() - r2.getB());
 		}
 
 		SECTION("Test left edge")
@@ -70,9 +87,9 @@ TEST_CASE("Range")
 
 			REQUIRE(!left.isValid());
 			REQUIRE(right.isValid());
-			REQUIRE(right.a == r2.b);
-			REQUIRE(right.b == r1.b);
-			REQUIRE(right.getLength() == r1.b - r2.b);
+			REQUIRE(right.getA() == r2.getB());
+			REQUIRE(right.getB() == r1.getB());
+			REQUIRE(right.getLength() == r1.getB() - r2.getB());
 		}
 
 		SECTION("Test right edge")
@@ -84,9 +101,9 @@ TEST_CASE("Range")
 
 			REQUIRE(left.isValid());
 			REQUIRE(!right.isValid());
-			REQUIRE(left.a == r1.a);
-			REQUIRE(left.b == r2.a);
-			REQUIRE(left.getLength() == r2.a - r1.a);
+			REQUIRE(left.getA() == r1.getA());
+			REQUIRE(left.getB() == r2.getA());
+			REQUIRE(left.getLength() == r2.getA() - r1.getA());
 		}
 
 		SECTION("Test invalid")
@@ -105,19 +122,19 @@ TEST_CASE("Range")
 	{
 		auto rMult = r1;
 		rMult *= 2;
-		REQUIRE(rMult == Range{r1.a, r1.b * 2});
+		REQUIRE(rMult == Range{r1.getA(), r1.getB() * 2});
 
 		auto rDiv = r1;
 		rDiv /= 2;
-		REQUIRE(rDiv == Range{r1.a, r1.b / 2});
+		REQUIRE(rDiv == Range{r1.getA(), r1.getB() / 2});
 
 		auto rPlus = r1;
 		rPlus += 2;
-		REQUIRE(rPlus == Range{r1.a + 2, r1.b + 2});
+		REQUIRE(rPlus == Range{r1.getA() + 2, r1.getB() + 2});
 
 		auto rMin = r1;
 		rMin -= 2;
-		REQUIRE(rMin == Range{r1.a - 2, r1.b - 2});
+		REQUIRE(rMin == Range{r1.getA() - 2, r1.getB() - 2});
 	}
 
 	SECTION("Test operations")
@@ -127,15 +144,15 @@ TEST_CASE("Range")
 		REQUIRE(r1 != rCopy + 1);
 
 		const auto rMult = r1 * 2;
-		REQUIRE(rMult == Range{r1.a, r1.b * 2});
+		REQUIRE(rMult == Range{r1.getA(), r1.getB() * 2});
 
 		const auto rDiv = r1 / 2;
-		REQUIRE(rDiv == Range{r1.a, r1.b / 2});
+		REQUIRE(rDiv == Range{r1.getA(), r1.getB() / 2});
 
 		const auto rPlus = r1 + 2;
-		REQUIRE(rPlus == Range{r1.a + 2, r1.b + 2});
+		REQUIRE(rPlus == Range{r1.getA() + 2, r1.getB() + 2});
 
 		const auto rMin = r1 - 2;
-		REQUIRE(rMin == Range{r1.a - 2, r1.b - 2});
+		REQUIRE(rMin == Range{r1.getA() - 2, r1.getB() - 2});
 	}
 }
