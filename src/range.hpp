@@ -126,6 +126,16 @@ public:
 		return a <= o.a && b >= o.b;
 	}
 
+	/* overflowLeft
+	True if this Range starts before o. */
+
+	bool overflowLeft(const Range& o) const { return a < o.a; }
+
+	/* overflowRight
+	True if this Range ends after o. */
+
+	bool overflowRight(const Range& o) const { return b > o.b; }
+
 	/* getDifference
 	Returns the difference of this Range with another one as two ranges. They
 	might be invalid in some cases.
