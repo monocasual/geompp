@@ -226,8 +226,8 @@ public:
 	/* with[Horizontal|Vertical]Range
 	Returns a copy of this rect new position and size defined by Range 'r'. */
 
-	Rect<T> withHorizontalRange(Range<T> r) const { return {r.a, y, r.getLength(), h}; }
-	Rect<T> withVerticalRange(Range<T> r) const { return {x, r.a, w, r.getLength()}; }
+	Rect<T> withHorizontalRange(Range<T> r) const { return {r.getA(), y, r.getLength(), h}; }
+	Rect<T> withVerticalRange(Range<T> r) const { return {x, r.getA(), w, r.getLength()}; }
 
 	/* withVerticalCenter
 	Returns a copy of this rect with new center defined by the y component of point 'p'. */
